@@ -23,8 +23,8 @@ class App extends React.Component{
                     activeClass += ' nav-item';
                     return (
                         <li key={key.toString()} className={activeClass}>
-                            {/*<a className="nav-link" href="javascript:void(0);" onClick={self.changePageName.bind(self, key)}>{key}</a>*/}
-                            <a className="nav-link" href="javascript:void(0);" onClick={self.changePageContent.bind(self, key)}>{key}</a>
+                            <a className="nav-link" href="javascript:void(0);" onClick={self.changePageName.bind(self, key)}>{key}</a>
+                            {/*<a className="nav-link" href="javascript:void(0);" onClick={self.changePageContent.bind(self, key)}>{key}</a>*/}
                         </li>
                     )
                 })}
@@ -45,33 +45,7 @@ class App extends React.Component{
         // console.log(page_name);
     }
 
-    changePageContent(page_name) {
 
-        let pageName = page_name.toLowerCase();
-        if(pageName=='users'){
-            this.users();
-        }else if(pageName == 'albums'){
-            this.albums();
-        }
 
-    }
-    users(){
-        var root = 'https://jsonplaceholder.typicode.com';
-        $.ajax({
-            url: root + '/posts/1',
-            method: 'GET'
-        }).then(function(data) {
-            console.log(data);
-        });
-    }
-    albums(){
-        var root = 'https://jsonplaceholder.typicode.com';
-        $.ajax({
-            url: root + '/posts/1',
-            method: 'GET'
-        }).then(function(data) {
-            console.log(data);
-        });
-    }
 }
 export default App;

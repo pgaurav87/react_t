@@ -6,6 +6,8 @@ import Header from './headerBS';
 import MainRole from './mainRole';
 import About from './about';
 import Footer from './footer';
+import Users from './users';
+
 
 
 class App extends React.Component{
@@ -30,6 +32,8 @@ class App extends React.Component{
             return <MainRole/>
         } else if(this.state.page_name == 'about us') {
             return <About />
+        }else if(this.state.page_name == 'users') {
+            return <Users />
         }
         return null;
     }
