@@ -7,6 +7,7 @@ import MainRole from './mainRole';
 import About from './about';
 import Footer from './footer';
 import Users from './users';
+import Albums from './album';
 
 
 
@@ -14,7 +15,7 @@ class App extends React.Component{
     constructor() {
         super();
         this.state = {
-            page_name: 'about us'
+            page_name: 'home'
         };
     }
     render() {
@@ -34,6 +35,8 @@ class App extends React.Component{
             return <About />
         }else if(this.state.page_name == 'users') {
             return <Users />
+        }else if(this.state.page_name == 'albums') {
+            return <Albums />
         }
         return null;
     }
