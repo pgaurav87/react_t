@@ -22613,6 +22613,10 @@ var _axios = __webpack_require__(49);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _address = __webpack_require__(68);
+
+var _address2 = _interopRequireDefault(_address);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22630,133 +22634,132 @@ var FetchDemo = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (FetchDemo.__proto__ || Object.getPrototypeOf(FetchDemo)).call(this, props));
 
         _this.state = {
-            usersList: {}
+            users_list: {}
         };
         return _this;
     }
 
     _createClass(FetchDemo, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
+        key: 'componentWillMount',
+        value: function componentWillMount() {
             var _this2 = this;
 
             _axios2.default.get('https://jsonplaceholder.typicode.com/users').then(function (res) {
-                var posts = res.data;
-                _this2.setState({ usersList: usersList });
+                _this2.setState({
+                    users_list: res.data
+                });
             });
         }
     }, {
         key: 'render',
         value: function render() {
+            var userList = this.state.users_list;
+
             return _react2.default.createElement(
                 'div',
                 { className: 'bd-example', 'data-example-id': '' },
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'table',
-                    { className: 'table table-inverse' },
+                    { className: 'table' },
                     _react2.default.createElement(
                         'thead',
                         null,
                         _react2.default.createElement(
                             'tr',
-                            null,
+                            { scope: 'row' },
                             _react2.default.createElement(
                                 'th',
                                 null,
-                                '#'
+                                'id'
                             ),
                             _react2.default.createElement(
                                 'th',
                                 null,
-                                'First Name'
+                                'name'
                             ),
                             _react2.default.createElement(
                                 'th',
                                 null,
-                                'Last Name'
+                                'username'
                             ),
                             _react2.default.createElement(
                                 'th',
                                 null,
-                                'Username'
+                                'email'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'phone'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'website'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'address'
                             )
                         )
                     ),
                     _react2.default.createElement(
                         'tbody',
                         null,
-                        _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'th',
-                                { scope: 'row' },
-                                '1'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                'Mark'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                'Otto'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                '@mdo'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'th',
-                                { scope: 'row' },
-                                '2'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                'Jacob'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                'Thornton'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                '@fat'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'th',
-                                { scope: 'row' },
-                                '3'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                'Larry'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                'the Bird'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                '@twitter'
-                            )
-                        )
+                        Object.keys(userList).map(function (keyName, keyIndex) {
+                            var propArr = userList[keyName];
+                            var id = propArr['id'];
+                            var name = propArr['name'];
+                            var username = propArr['username'];
+                            var email = propArr['email'];
+                            var phone = propArr['phone'];
+                            var website = propArr['website'];
+                            var address = propArr['address'];
+                            // use keyName to get current key's name
+                            // and a[keyName] to get its value
+                            return _react2.default.createElement(
+                                'tr',
+                                { key: keyName.toString() },
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    id
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    name
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    username
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    email
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    phone
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    website
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    _react2.default.createElement(_address2.default, { address: address })
+                                )
+                            );
+                        })
                     )
                 )
             );
@@ -22840,7 +22843,7 @@ module.exports.default = axios;
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <https://feross.org>
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
  * @license  MIT
  */
 
@@ -23657,6 +23660,233 @@ module.exports = function spread(callback) {
   };
 };
 
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _geo = __webpack_require__(69);
+
+var _geo2 = _interopRequireDefault(_geo);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaurav.panchal on 26-10-2017.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+var App = function (_React$Component) {
+    _inherits(App, _React$Component);
+
+    function App() {
+        _classCallCheck(this, App);
+
+        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    }
+
+    _createClass(App, [{
+        key: 'render',
+        value: function render() {
+            console.log(this.props.address);
+            var addressArr = this.props.address;
+            var geoArr = addressArr['geo'];
+            var city = addressArr['city'];
+            var street = addressArr['street'];
+            var suite = addressArr['suite'];
+            var zipcode = addressArr['zipcode'];
+
+            return _react2.default.createElement(
+                'table',
+                { className: 'table' },
+                _react2.default.createElement(
+                    'tbody',
+                    null,
+                    _react2.default.createElement(
+                        'tr',
+                        null,
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'city'
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            city
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'tr',
+                        null,
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'street'
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            street
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'tr',
+                        null,
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'suite'
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            suite
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'tr',
+                        null,
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'zipcode'
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            zipcode
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'tr',
+                        null,
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'geo'
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            _react2.default.createElement(_geo2.default, { geo: geoArr })
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return App;
+}(_react2.default.Component);
+
+exports.default = App;
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaurav.panchal on 26-10-2017.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+var App = function (_React$Component) {
+    _inherits(App, _React$Component);
+
+    function App() {
+        _classCallCheck(this, App);
+
+        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    }
+
+    _createClass(App, [{
+        key: 'render',
+        value: function render() {
+            console.log(this.props.geo);
+            var geoArr = this.props.geo;
+            var lat = geoArr['lat'];
+            var lng = geoArr['lng'];
+
+            return _react2.default.createElement(
+                'table',
+                { className: 'table' },
+                _react2.default.createElement(
+                    'tbody',
+                    null,
+                    _react2.default.createElement(
+                        'tr',
+                        null,
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'lat'
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            lat
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'tr',
+                        null,
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'lng'
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            lng
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return App;
+}(_react2.default.Component);
+
+exports.default = App;
 
 /***/ })
 /******/ ]);
