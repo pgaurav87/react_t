@@ -20,12 +20,17 @@ class FetchDemo extends React.Component {
                     users_list: res.data
                 });
 
-
             });
     }
 
     render() {
         let userList = this.state.users_list;
+        let self = this;
+        if(!Object.keys(userList).length) {
+            return <div className="loader">Loading...</div>
+        }
+        console.log(this.props.app);
+        //debugger;
 
         return (
 
@@ -40,31 +45,27 @@ class FetchDemo extends React.Component {
                         <th>email</th>
                         <th>phone</th>
                         <th>website</th>
-                        <th>address</th>
+                        <th>Details</th>
+
                     </tr>
                     </thead>
                     <tbody>
                     {
                         Object.keys(userList).map(function(keyName, keyIndex) {
                             let propArr = userList[keyName];
-                            let id = propArr['id'];
-                            let name = propArr['name'];
-                            let username = propArr['username'];
-                            let email = propArr['email'];
-                            let phone = propArr['phone'];
-                            let website = propArr['website'];
-                            let address = propArr['address'];
+
                             // use keyName to get current key's name
                             // and a[keyName] to get its value
                             return (
                                 <tr key={keyName.toString()} >
-                                    <td>{id}</td>
-                                    <td>{name}</td>
-                                    <td>{username}</td>
-                                    <td>{email}</td>
-                                    <td>{phone}</td>
-                                    <td>{website}</td>
-                                    <td><Address address={address}/></td>
+                                    <td>{propArr['id']}</td>
+                                    <td>{propArr['name']}</td>
+                                    <td>{propArr['username']}</td>
+                                    <td>{propArr['email']}</td>
+                                    <td>{propArr['phone']}</td>
+                                    <td>{propArr['website']}</td>
+                                    <td><a className="nav-link" href="javascript:void(0);" onClick={self.changePageName.bind(self, propArr['id'], propArr)}>click here</a></td>
+                                    {/*<td><Address address={address}/></td>*/}
                                 </tr>
                             )
                         })
@@ -75,5 +76,16 @@ class FetchDemo extends React.Component {
             </div>
         );
     }
+    changePageName(userId, userArr) {
+
+        var newState = {
+            page_name: 'details',
+            user_details: userArr
+        };
+
+        this.props.appUser.setState(newState);
+
+    }
+
 }
 export default FetchDemo;

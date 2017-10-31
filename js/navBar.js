@@ -38,6 +38,7 @@ class App extends React.Component{
         var newState = {
             page_name: page_name.toLowerCase()
 
+
         };
 
         this.props.app.setState(newState);

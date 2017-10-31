@@ -21902,6 +21902,10 @@ var _album = __webpack_require__(70);
 
 var _album2 = _interopRequireDefault(_album);
 
+var _details = __webpack_require__(71);
+
+var _details2 = _interopRequireDefault(_details);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21922,7 +21926,8 @@ var App = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
         _this.state = {
-            page_name: 'home'
+            page_name: 'home',
+            user_details: {}
         };
         return _this;
     }
@@ -21930,6 +21935,8 @@ var App = function (_React$Component) {
     _createClass(App, [{
         key: 'render',
         value: function render() {
+            //console.log("call render");
+            debugger;
             return _react2.default.createElement(
                 'div',
                 null,
@@ -21947,9 +21954,11 @@ var App = function (_React$Component) {
             } else if (this.state.page_name == 'about us') {
                 return _react2.default.createElement(_about2.default, null);
             } else if (this.state.page_name == 'users') {
-                return _react2.default.createElement(_users2.default, null);
+                return _react2.default.createElement(_users2.default, { appUser: this });
             } else if (this.state.page_name == 'albums') {
                 return _react2.default.createElement(_album2.default, null);
+            } else if (this.state.page_name == 'details') {
+                return _react2.default.createElement(_details2.default, { userDetails: this });
             }
             return null;
         }
@@ -22666,6 +22675,16 @@ var FetchDemo = function (_React$Component) {
         key: 'render',
         value: function render() {
             var userList = this.state.users_list;
+            var self = this;
+            if (!Object.keys(userList).length) {
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'loader' },
+                    'Loading...'
+                );
+            }
+            console.log(this.props.app);
+            //debugger;
 
             return _react2.default.createElement(
                 'div',
@@ -22714,7 +22733,7 @@ var FetchDemo = function (_React$Component) {
                             _react2.default.createElement(
                                 'th',
                                 null,
-                                'address'
+                                'Details'
                             )
                         )
                     ),
@@ -22723,13 +22742,7 @@ var FetchDemo = function (_React$Component) {
                         null,
                         Object.keys(userList).map(function (keyName, keyIndex) {
                             var propArr = userList[keyName];
-                            var id = propArr['id'];
-                            var name = propArr['name'];
-                            var username = propArr['username'];
-                            var email = propArr['email'];
-                            var phone = propArr['phone'];
-                            var website = propArr['website'];
-                            var address = propArr['address'];
+
                             // use keyName to get current key's name
                             // and a[keyName] to get its value
                             return _react2.default.createElement(
@@ -22738,43 +22751,58 @@ var FetchDemo = function (_React$Component) {
                                 _react2.default.createElement(
                                     'td',
                                     null,
-                                    id
+                                    propArr['id']
                                 ),
                                 _react2.default.createElement(
                                     'td',
                                     null,
-                                    name
+                                    propArr['name']
                                 ),
                                 _react2.default.createElement(
                                     'td',
                                     null,
-                                    username
+                                    propArr['username']
                                 ),
                                 _react2.default.createElement(
                                     'td',
                                     null,
-                                    email
+                                    propArr['email']
                                 ),
                                 _react2.default.createElement(
                                     'td',
                                     null,
-                                    phone
+                                    propArr['phone']
                                 ),
                                 _react2.default.createElement(
                                     'td',
                                     null,
-                                    website
+                                    propArr['website']
                                 ),
                                 _react2.default.createElement(
                                     'td',
                                     null,
-                                    _react2.default.createElement(_address2.default, { address: address })
+                                    _react2.default.createElement(
+                                        'a',
+                                        { className: 'nav-link', href: 'javascript:void(0);', onClick: self.changePageName.bind(self, propArr['id'], propArr) },
+                                        'click here'
+                                    )
                                 )
                             );
                         })
                     )
                 )
             );
+        }
+    }, {
+        key: 'changePageName',
+        value: function changePageName(userId, userArr) {
+
+            var newState = {
+                page_name: 'details',
+                user_details: userArr
+            };
+
+            this.props.appUser.setState(newState);
         }
     }]);
 
@@ -24027,6 +24055,144 @@ var FetchDemo = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = FetchDemo;
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaurav.panchal on 26-10-2017.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+var App = function (_React$Component) {
+    _inherits(App, _React$Component);
+
+    function App() {
+        _classCallCheck(this, App);
+
+        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    }
+
+    _createClass(App, [{
+        key: "render",
+        value: function render() {
+            console.log(this.props.userDetails.state.user_details);
+            debugger;
+            var propArr = this.props.userDetails.state.user_details;
+
+            return _react2.default.createElement(
+                "div",
+                { className: "bd-example", "data-example-id": "" },
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("br", null),
+                _react2.default.createElement(
+                    "table",
+                    { className: "table" },
+                    _react2.default.createElement(
+                        "thead",
+                        null,
+                        _react2.default.createElement(
+                            "tr",
+                            { scope: "row" },
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                "id"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                "name"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                "username"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                "email"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                "phone"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                "website"
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "tbody",
+                        null,
+                        _react2.default.createElement(
+                            "tr",
+                            null,
+                            _react2.default.createElement(
+                                "td",
+                                null,
+                                propArr['id']
+                            ),
+                            _react2.default.createElement(
+                                "td",
+                                null,
+                                propArr['name']
+                            ),
+                            _react2.default.createElement(
+                                "td",
+                                null,
+                                propArr['username']
+                            ),
+                            _react2.default.createElement(
+                                "td",
+                                null,
+                                propArr['email']
+                            ),
+                            _react2.default.createElement(
+                                "td",
+                                null,
+                                propArr['phone']
+                            ),
+                            _react2.default.createElement(
+                                "td",
+                                null,
+                                propArr['website']
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return App;
+}(_react2.default.Component);
+
+exports.default = App;
 
 /***/ })
 /******/ ]);
