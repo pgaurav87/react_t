@@ -36,8 +36,9 @@ class App extends React.Component{
     }
     changePageName(page_name) {
         var newState = {
-            page_name: page_name.toLowerCase()
-
+            page_name: page_name.toLowerCase(),
+            user_details: {},
+            user_active_row:1
 
         };
 

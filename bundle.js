@@ -21927,7 +21927,8 @@ var App = function (_React$Component) {
 
         _this.state = {
             page_name: 'home',
-            user_details: {}
+            user_details: {},
+            user_active_row: 1
         };
         return _this;
     }
@@ -21936,7 +21937,7 @@ var App = function (_React$Component) {
         key: 'render',
         value: function render() {
             //console.log("call render");
-            debugger;
+
             return _react2.default.createElement(
                 'div',
                 null,
@@ -22120,7 +22121,9 @@ var App = function (_React$Component) {
         key: 'changePageName',
         value: function changePageName(page_name) {
             var newState = {
-                page_name: page_name.toLowerCase()
+                page_name: page_name.toLowerCase(),
+                user_details: {},
+                user_active_row: 1
 
             };
 
@@ -22745,9 +22748,15 @@ var FetchDemo = function (_React$Component) {
 
                             // use keyName to get current key's name
                             // and a[keyName] to get its value
+                            var activeRow = void 0;
+
+                            if (self.props.appUser.state.user_active_row == propArr['id']) {
+                                activeRow = 'active-row';
+                            }
+
                             return _react2.default.createElement(
                                 'tr',
-                                { key: keyName.toString() },
+                                { className: activeRow, key: keyName.toString() },
                                 _react2.default.createElement(
                                     'td',
                                     null,
@@ -22783,7 +22792,7 @@ var FetchDemo = function (_React$Component) {
                                     null,
                                     _react2.default.createElement(
                                         'a',
-                                        { className: 'nav-link', href: 'javascript:void(0);', onClick: self.changePageName.bind(self, propArr['id'], propArr) },
+                                        { href: 'javascript:void(0);', onClick: self.changePageName.bind(self, propArr['id'], propArr) },
                                         'click here'
                                     )
                                 )
@@ -24096,8 +24105,6 @@ var App = function (_React$Component) {
     _createClass(App, [{
         key: "render",
         value: function render() {
-            console.log(this.props.userDetails.state.user_details);
-            debugger;
             var propArr = this.props.userDetails.state.user_details;
 
             return _react2.default.createElement(
@@ -24143,6 +24150,15 @@ var App = function (_React$Component) {
                                 "th",
                                 null,
                                 "website"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                _react2.default.createElement(
+                                    "a",
+                                    { className: "btn btn-primary pull-right", href: "javascript:void(0);", onClick: this.changePageName.bind(this, propArr['id']) },
+                                    "back"
+                                )
                             )
                         )
                     ),
@@ -24186,6 +24202,17 @@ var App = function (_React$Component) {
                     )
                 )
             );
+        }
+    }, {
+        key: "changePageName",
+        value: function changePageName(id) {
+
+            var newState = {
+                page_name: 'users',
+                user_details: {},
+                user_active_row: id
+            };
+            this.props.userDetails.setState(newState);
         }
     }]);
 

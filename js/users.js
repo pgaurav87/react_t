@@ -56,15 +56,21 @@ class FetchDemo extends React.Component {
 
                             // use keyName to get current key's name
                             // and a[keyName] to get its value
+                            let activeRow;
+
+                            if(self.props.appUser.state.user_active_row == propArr['id']){
+                                activeRow = 'active-row'
+                            }
+
                             return (
-                                <tr key={keyName.toString()} >
+                                <tr className={activeRow} key={keyName.toString()} >
                                     <td>{propArr['id']}</td>
                                     <td>{propArr['name']}</td>
                                     <td>{propArr['username']}</td>
                                     <td>{propArr['email']}</td>
                                     <td>{propArr['phone']}</td>
                                     <td>{propArr['website']}</td>
-                                    <td><a className="nav-link" href="javascript:void(0);" onClick={self.changePageName.bind(self, propArr['id'], propArr)}>click here</a></td>
+                                    <td><a  href="javascript:void(0);" onClick={self.changePageName.bind(self, propArr['id'], propArr)}>click here</a></td>
                                     {/*<td><Address address={address}/></td>*/}
                                 </tr>
                             )

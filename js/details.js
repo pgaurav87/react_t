@@ -6,9 +6,7 @@ import React from 'react';
 class App extends React.Component{
 
     render(){
-        console.log(this.props.userDetails.state.user_details);
-        debugger;
-        let propArr =  this.props.userDetails.state.user_details;
+         let propArr =  this.props.userDetails.state.user_details;
 
         return (
             <div className="bd-example" data-example-id="">
@@ -22,7 +20,7 @@ class App extends React.Component{
                         <th>email</th>
                         <th>phone</th>
                         <th>website</th>
-
+                        <th><a className="btn btn-primary pull-right" href="javascript:void(0);" onClick={this.changePageName.bind(this,propArr['id'])}>back</a></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,6 +38,16 @@ class App extends React.Component{
             </div>
 
         )
+    }
+    changePageName(id) {
+
+        var newState = {
+            page_name: 'users',
+            user_details: {},
+            user_active_row:id
+        };
+        this.props.userDetails.setState(newState);
+
     }
 
 }

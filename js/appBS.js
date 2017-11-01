@@ -12,17 +12,19 @@ import Details from './details';
 
 
 
+
 class App extends React.Component{
     constructor() {
         super();
         this.state = {
             page_name: 'home',
-            user_details: {}
+            user_details: {},
+            user_active_row :1
         };
     }
     render() {
         //console.log("call render");
-        debugger;
+
         return (
             <div>
                 <Header app={this}/>
