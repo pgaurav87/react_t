@@ -26,12 +26,17 @@ class FetchDemo extends React.Component {
 
     render() {
         let albumList = this.state.album_list;
+        if(!Object.keys(albumList).length) {
+            return <div className="loader">Loading...</div>
+        }
 
+        let activeRow = 'active-row'
+        let rowCount = 1;
         return (
 
             <div className="bd-example" data-example-id="">
                 <br/><br/>
-                <table className="table">
+                <table className="table table-hover">
                     <thead>
                     <tr scope="row">
                         <th>id</th>
@@ -46,9 +51,11 @@ class FetchDemo extends React.Component {
                             let id     = albumList[keyName]['id'];
                             let userId = albumList[keyName]['userId'];
                             let title  = albumList[keyName]['title'];
-
+                            if(rowCount!=1){
+                                activeRow = '';
+                            }
                             return (
-                                <tr key={keyName.toString()} >
+                                <tr className={activeRow} key={keyName.toString()} >
                                     <td>{id}</td>
                                     <td>{userId}</td>
                                     <td>{title}</td>

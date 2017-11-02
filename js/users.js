@@ -36,7 +36,7 @@ class FetchDemo extends React.Component {
 
             <div className="bd-example" data-example-id="">
                 <br/><br/>
-                <table className="table">
+                <table className="table table-hover">
                     <thead>
                     <tr scope="row">
                         <th>id</th>
@@ -61,7 +61,6 @@ class FetchDemo extends React.Component {
                             if(self.props.appUser.state.user_active_row == propArr['id']){
                                 activeRow = 'active-row'
                             }
-
                             return (
                                 <tr className={activeRow} key={keyName.toString()} >
                                     <td>{propArr['id']}</td>

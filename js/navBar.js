@@ -15,7 +15,7 @@ class App extends React.Component{
         console.log(this.props.app.state);
 
         let self = this;
-        var dropItems = ["Home", "Users", "Albums"];
+        var dropItems = ["Home", "Users", "Albums", "todolist"];
         return (<div className="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul className="navbar-nav mr-auto">
                 {dropItems.map(function (key) {

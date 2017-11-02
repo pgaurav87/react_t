@@ -9,7 +9,7 @@ import Footer from './footer';
 import Users from './users';
 import Albums from './album';
 import Details from './details';
-
+import Todolist from './todolist';
 
 
 
@@ -45,9 +45,12 @@ class App extends React.Component{
             return <Albums />
         }else if(this.state.page_name == 'details') {
             return <Details userDetails={this}/>
+        }else if(this.state.page_name == 'todolist') {
+            return <Todolist />
         }
         return null;
     }
+
 
 }
 export default App;

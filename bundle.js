@@ -21906,6 +21906,10 @@ var _details = __webpack_require__(71);
 
 var _details2 = _interopRequireDefault(_details);
 
+var _todolist = __webpack_require__(72);
+
+var _todolist2 = _interopRequireDefault(_todolist);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21960,6 +21964,8 @@ var App = function (_React$Component) {
                 return _react2.default.createElement(_album2.default, null);
             } else if (this.state.page_name == 'details') {
                 return _react2.default.createElement(_details2.default, { userDetails: this });
+            } else if (this.state.page_name == 'todolist') {
+                return _react2.default.createElement(_todolist2.default, null);
             }
             return null;
         }
@@ -22092,7 +22098,7 @@ var App = function (_React$Component) {
             console.log(this.props.app.state);
 
             var self = this;
-            var dropItems = ["Home", "Users", "Albums"];
+            var dropItems = ["Home", "Users", "Albums", "todolist"];
             return _react2.default.createElement(
                 'div',
                 { className: 'collapse navbar-collapse', id: 'navbarsExampleDefault' },
@@ -22696,7 +22702,7 @@ var FetchDemo = function (_React$Component) {
                 _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'table',
-                    { className: 'table' },
+                    { className: 'table table-hover' },
                     _react2.default.createElement(
                         'thead',
                         null,
@@ -22753,7 +22759,6 @@ var FetchDemo = function (_React$Component) {
                             if (self.props.appUser.state.user_active_row == propArr['id']) {
                                 activeRow = 'active-row';
                             }
-
                             return _react2.default.createElement(
                                 'tr',
                                 { className: activeRow, key: keyName.toString() },
@@ -23993,7 +23998,16 @@ var FetchDemo = function (_React$Component) {
         key: 'render',
         value: function render() {
             var albumList = this.state.album_list;
+            if (!Object.keys(albumList).length) {
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'loader' },
+                    'Loading...'
+                );
+            }
 
+            var activeRow = 'active-row';
+            var rowCount = 1;
             return _react2.default.createElement(
                 'div',
                 { className: 'bd-example', 'data-example-id': '' },
@@ -24001,7 +24015,7 @@ var FetchDemo = function (_React$Component) {
                 _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'table',
-                    { className: 'table' },
+                    { className: 'table table-hover' },
                     _react2.default.createElement(
                         'thead',
                         null,
@@ -24033,10 +24047,12 @@ var FetchDemo = function (_React$Component) {
                             var id = albumList[keyName]['id'];
                             var userId = albumList[keyName]['userId'];
                             var title = albumList[keyName]['title'];
-
+                            if (rowCount != 1) {
+                                activeRow = '';
+                            }
                             return _react2.default.createElement(
                                 'tr',
-                                { key: keyName.toString() },
+                                { className: activeRow, key: keyName.toString() },
                                 _react2.default.createElement(
                                     'td',
                                     null,
@@ -24213,6 +24229,60 @@ var App = function (_React$Component) {
                 user_active_row: id
             };
             this.props.userDetails.setState(newState);
+        }
+    }]);
+
+    return App;
+}(_react2.default.Component);
+
+exports.default = App;
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaurav.panchal on 26-10-2017.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+var App = function (_React$Component) {
+    _inherits(App, _React$Component);
+
+    function App() {
+        _classCallCheck(this, App);
+
+        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    }
+
+    _createClass(App, [{
+        key: 'render',
+        value: function render() {
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                'to do list.'
+            );
         }
     }]);
 
