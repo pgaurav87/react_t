@@ -29,7 +29,7 @@ class App extends React.Component{
             <div>
                 <Header app={this}/>
                 {this.getMainArea()}
-                <Footer/>
+                {/*<Footer/>*/}
             </div>
         )
     }
@@ -54,6 +54,7 @@ class App extends React.Component{
 
 }
 export default App;
+
 
 
 

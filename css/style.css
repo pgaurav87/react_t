@@ -1,0 +1,32 @@
+.loader{
+    color: green;margin-top: 18%;margin-left: 45%;margin-bottom: 50%;text-shadow: 0 0 9px black;background-color: white;color: black;
+}
+.active-row{
+    background-color:orange;
+}
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+    background-color:#550055;
+    color:#eeeeee;
+}
+.margin-from-top {
+    margin-top: 3%;
+    background-color: #c0e5ff;
+    width: 100%;
+}
+.title{
+
+    font-size:33px;
+    text-align:center;
+    font-weight:bold;
+    margin-left:20px;
+
+}
+.name-cls{
+    background-color:beige;
+    margin-top:20px;
+    font-family:cursive;
+    height:277px;
+    width:504px;
+    overflow-y:scroll;
+    overflow-x:scroll;
+}

@@ -6,7 +6,7 @@ import React from 'react';
 class App extends React.Component{
     render(){
 
-        var dropItems = ["Action", "Another action", "Something else"];
+        var dropItems = ["Action", "Another action", "Something else","one more"];
         return (
             <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>

@@ -16,15 +16,15 @@ class App extends React.Component{
         let zipcode    = addressArr['zipcode'];
 
         return (<table className="table">
-                         <tbody>
-                            <tr><th>city</th><td>{city}</td></tr>
-                            <tr><th>street</th><td>{street}</td></tr>
-                            <tr><th>suite</th><td>{suite}</td></tr>
-                            <tr><th>zipcode</th><td>{zipcode}</td></tr>
-                            <tr><th>geo</th><td><Geo geo={geoArr}/></td></tr>
-                         </tbody>
+            <tbody>
+            <tr><th>city</th><td>{city}</td></tr>
+            <tr><th>street</th><td>{street}</td></tr>
+            <tr><th>suite</th><td>{suite}</td></tr>
+            <tr><th>zipcode</th><td>{zipcode}</td></tr>
+            <tr><th>geo</th><td><Geo geo={geoArr}/></td></tr>
+            </tbody>
 
-                </table>)
+        </table>)
     }
 
 }
