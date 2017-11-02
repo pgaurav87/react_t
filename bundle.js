@@ -24333,7 +24333,7 @@ var App = function (_React$Component) {
         key: 'handleKeyPress',
         value: function handleKeyPress(e) {
             debugger;
-            this.state.tmp_task = this.state.tmp_task.concat(e.target.value);
+            this.state.tmp_task = e.target.value;
             console.log(this.state.tmp_task);
             if (e.key == 'Enter') {
                 var sentance = this.state.tmp_task.toString();
@@ -24344,6 +24344,7 @@ var App = function (_React$Component) {
                 };
                 console.log(sentance);
                 this.setState(newState);
+                e.target.value = '';
                 console.log('enter press here! ');
             }
         }

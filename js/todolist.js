@@ -55,6 +55,7 @@ class App extends React.Component{
             }
             console.log(sentance);
             this.setState(newState);
+            e.target.value = '';
             console.log('enter press here! ');
         }
     }
