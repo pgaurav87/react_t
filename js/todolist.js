@@ -44,7 +44,7 @@ class App extends React.Component{
 
     handleKeyPress(e){
         debugger;
-        this.state.tmp_task = this.state.tmp_task.concat(e.target.value);
+        this.state.tmp_task = e.target.value;
         console.log(this.state.tmp_task);
         if(e.key == 'Enter'){
             let sentance = this.state.tmp_task.toString();
