@@ -43,9 +43,9 @@ class App extends React.Component{
     }
 
     handleKeyPress(e){
-        debugger;
+        //debugger;
         this.state.tmp_task = e.target.value;
-        console.log(this.state.tmp_task);
+        //console.log(this.state.tmp_task);
         if(e.key == 'Enter'){
             let sentance = this.state.tmp_task.toString();
             let newState = {
@@ -53,7 +53,7 @@ class App extends React.Component{
                 tmp_task:[]
 
             }
-            console.log(sentance);
+            //console.log(sentance);
             this.setState(newState);
             e.target.value = '';
             console.log('enter press here! ');

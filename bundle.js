@@ -24332,18 +24332,16 @@ var App = function (_React$Component) {
     }, {
         key: 'handleKeyPress',
         value: function handleKeyPress(e) {
-            debugger;
+            //debugger;
             this.state.tmp_task = e.target.value;
-            console.log(this.state.tmp_task);
+            //console.log(this.state.tmp_task);
             if (e.key == 'Enter') {
                 var sentance = this.state.tmp_task.toString();
                 var newState = {
                     tasks: this.state.tasks.concat(sentance),
                     tmp_task: []
-
-                };
-                console.log(sentance);
-                this.setState(newState);
+                    //console.log(sentance);
+                };this.setState(newState);
                 e.target.value = '';
                 console.log('enter press here! ');
             }
@@ -24397,6 +24395,7 @@ var App = function (_React$Component) {
         value: function render() {
 
             var toDoItems = this.props.app.state.tasks;
+            var self = this;
             if (!Object.keys(toDoItems).length) {
                 return _react2.default.createElement("div", null);
             } else {
@@ -24417,7 +24416,9 @@ var App = function (_React$Component) {
                                 { className: "pull-right", role: "group" },
                                 _react2.default.createElement(
                                     "button",
-                                    { type: "button", className: "btn btn-xs btn-danger img-circle" },
+                                    { type: "button", className: "btn btn-xs btn-danger img-circle btn-right-float", onClick: function onClick(e) {
+                                            return self.remove(e);
+                                        } },
                                     "X"
                                 )
                             )
@@ -24425,6 +24426,12 @@ var App = function (_React$Component) {
                     })
                 );
             }
+        }
+    }, {
+        key: "remove",
+        value: function remove(e) {
+            //debugger;
+            console.log($(e.currentTarget).closest('.list-group-item').remove());
         }
     }]);
 
